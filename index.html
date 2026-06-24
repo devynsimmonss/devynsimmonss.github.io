@@ -212,8 +212,17 @@
     .about {
       padding: 48px 48px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr 340px;
       gap: 48px;
+      align-items: start;
+    }
+    .about-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: saturate(0.92);
     }
     .body-text {
       font-size: 13px;
@@ -407,6 +416,7 @@
       .hero { padding: 36px 24px 0; }
       .hero-bottom { grid-template-columns: 1fr; gap: 28px; }
       .about { padding: 36px 24px; grid-template-columns: 1fr; gap: 32px; }
+      .about-photo { max-height: 360px; width: 100%; }
       .projects { padding: 36px 24px; }
       .skills { padding: 36px 24px; }
       .skills-inner { grid-template-columns: 1fr; }
@@ -578,6 +588,7 @@
           <div class="cred-sub">Cloud Practitioner · Native English</div>
         </div>
       </div>
+      <img src="headshot.png" alt="Devyn Simmons" class="about-photo" />
     </div>
   </div>
 
