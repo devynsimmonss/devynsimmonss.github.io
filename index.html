@@ -23,8 +23,8 @@
       --muted:   #7D6A62;
       --faint:   #A8928A;
       --body:    #5C4A42;
-      --proj-text:#8C7A72;
-      --proj-tag: #7D6A62;
+      --proj-text:#C4AFA8;
+      --proj-tag: #9E8E86;
     }
 
     html { scroll-behavior: smooth; }
@@ -282,7 +282,7 @@
       font-size: 9px;
       text-transform: uppercase;
       letter-spacing: 0.12em;
-      color: var(--muted);
+      color: #9E8E86;
       margin-bottom: 7px;
     }
     .proj-meta.mauve { color: var(--mauve); }
@@ -430,6 +430,25 @@
       .proj-card, .connect-link, .btn { transition: all 0.2s ease; }
     }
 
+    /* ── SCROLL ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-up.delay-1 { transition-delay: 0.1s; }
+    .fade-up.delay-2 { transition-delay: 0.2s; }
+    .fade-up.delay-3 { transition-delay: 0.3s; }
+    .fade-up.delay-4 { transition-delay: 0.4s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fade-up { opacity: 1; transform: none; transition: none; }
+    }
+
     /* ── RESUME ── */
     .resume-wrap { border-bottom: 0.5px solid var(--border); }
     .resume-inner {
@@ -516,10 +535,10 @@
   <!-- HERO -->
   <div style="border-bottom: 0.5px solid var(--border);">
     <div class="hero">
-      <div class="eyebrow">Analytics · Fashion · Consumer · Culture</div>
-      <h1 class="hero-name">Devyn<br><em>Simmons</em></h1>
-      <div class="rule"></div>
-      <div class="hero-bottom">
+      <div class="eyebrow fade-up">Analytics · Fashion · Consumer · Culture</div>
+      <h1 class="hero-name fade-up delay-1">Devyn<br><em>Simmons</em></h1>
+      <div class="rule fade-up delay-2"></div>
+      <div class="hero-bottom fade-up delay-3">
         <div>
           <p class="hero-tagline">MS Business Analytics · Cal Poly SLO · Former D1 athlete.<br>Translating <strong>consumer behavior</strong> and cultural data into strategy for brands that shape how people dress, move, and live.</p>
           <div class="hero-cta">
@@ -552,11 +571,11 @@
   <!-- ABOUT -->
   <div class="about-wrap" id="about">
     <div class="about">
-      <div>
+      <div class="fade-up">
         <div class="section-label">About</div>
         <h2 class="section-title">Analyst.<br><em>Athlete.</em><br>Fashion-obsessed.</h2>
-        <p class="body-text">Business analytics master's student at Cal Poly SLO with a background in Statistical Data Science from UC Davis, where I spent four years as a Division I soccer athlete. I've always believed the best brands don't just sell products — they sell a feeling.</p>
-        <p class="body-text">Drawn to roles at the intersection of consumer behavior, culture, and data — at fashion brands, lifestyle retailers, or athletic wear companies where analytics serves people with taste.</p>
+        <p class="body-text">MS Business Analytics graduate from Cal Poly SLO with a background in Statistical Data Science from UC Davis, where I spent four years as a Division I soccer athlete. I've always believed the best brands don't just sell products. They sell a feeling.</p>
+        <p class="body-text">Drawn to roles at the intersection of consumer behavior, culture, and data at fashion brands, lifestyle retailers, or athletic wear companies where analytics serves people with taste.</p>
         <div class="pills">
           <span class="pill pill-wine">Marketing Analytics</span>
           <span class="pill pill-wine">Consumer Insights</span>
@@ -566,7 +585,7 @@
           <span class="pill">Lifestyle Brands</span>
         </div>
       </div>
-      <div class="creds">
+      <div class="creds fade-up delay-2">
         <div class="cred">
           <div class="cred-title">MS, Business Analytics</div>
           <div class="cred-sub">Cal Poly SLO · GPA 3.91 · 2025–26</div>
@@ -576,7 +595,7 @@
           <div class="cred-sub">UC Davis · French Minor · D1 Soccer · 2021–25</div>
         </div>
         <div class="cred">
-          <div class="cred-title">NVIDIA — Marketing & Product Analyst</div>
+          <div class="cred-title">NVIDIA: Marketing &amp; Product Analyst</div>
           <div class="cred-sub">Industry Project · 70M row dataset · 2026</div>
         </div>
         <div class="cred">
@@ -588,22 +607,22 @@
           <div class="cred-sub">Cloud Practitioner · Native English</div>
         </div>
       </div>
-      <img src="headshot.png" alt="Devyn Simmons" class="about-photo" />
+      <img src="headshot.png" alt="Devyn Simmons" class="about-photo fade-up delay-3" />
     </div>
   </div>
 
   <!-- PROJECTS -->
   <div class="projects-wrap" id="work">
     <section class="projects">
-      <div class="section-label">Selected Work</div>
-      <h2 class="section-title">Work &amp; <em style="color: var(--mauve)">Projects</em></h2>
+      <div class="section-label fade-up">Selected Work</div>
+      <h2 class="section-title fade-up delay-1">Work &amp; <em style="color: var(--mauve)">Projects</em></h2>
       <div class="proj-grid">
 
-        <div class="proj-card">
+        <div class="proj-card fade-up delay-1">
           <div>
             <div class="proj-meta">Personal · Sports Analytics · Python</div>
             <div class="proj-title">Garmin Running Analytics</div>
-            <p class="proj-desc">Personal wearable data analysis uncovering trends in running performance and recovery. Predictive models for marathon outcomes and an interactive training dashboard — motivated by the gap in women's endurance research.</p>
+            <p class="proj-desc">Personal wearable data analysis uncovering trends in running performance and recovery. Predictive models for marathon outcomes and an interactive training dashboard, motivated by the gap in women's endurance research.</p>
             <div class="proj-tags">
               <span class="proj-tag">Python</span>
               <span class="proj-tag">Predictive Modeling</span>
@@ -619,7 +638,7 @@
           <div class="proj-arrow">→</div>
         </div>
 
-        <div class="proj-card">
+        <div class="proj-card fade-up delay-2">
           <div>
             <div class="proj-meta">Industry · Marketing Analytics · SQL · Python · DuckDB</div>
             <div class="proj-title">NVIDIA Product Engagement</div>
@@ -635,7 +654,7 @@
           <div class="proj-arrow">→</div>
         </div>
 
-        <div class="proj-card">
+        <div class="proj-card fade-up delay-3">
           <div>
             <div class="proj-meta">Industry · Customer Analytics · Python · R</div>
             <div class="proj-title">Oracle Customer Churn &amp; Retention</div>
@@ -651,11 +670,11 @@
           <div class="proj-arrow">→</div>
         </div>
 
-        <div class="proj-card soon">
+        <div class="proj-card soon fade-up delay-4">
           <div>
             <div class="proj-meta mauve">In Progress · Fashion Analytics · Python · NLP</div>
             <div class="proj-title mauve">Social Signal to Sales</div>
-            <p class="proj-desc">Influencer-driven trend forecasting in fashion and athletic apparel — correlating creator engagement spikes with trend rise/peak/decline cycles using NLP on captions and quasi-experimental A/B methods.</p>
+            <p class="proj-desc">Influencer-driven trend forecasting in fashion and athletic apparel, correlating creator engagement spikes with trend rise/peak/decline cycles using NLP on captions and quasi-experimental A/B methods.</p>
             <div class="proj-tags">
               <span class="proj-tag">NLP</span>
               <span class="proj-tag">Trend Forecasting</span>
@@ -671,7 +690,7 @@
           <div>
             <div class="proj-meta mauve">In Progress · Financial Analytics · Python</div>
             <div class="proj-title mauve">Athletic Apparel Brand Benchmarking</div>
-            <p class="proj-desc">Comparative financial health analysis across Lululemon, Nike, Under Armour, and Adidas — revenue growth, gross margin trends, DTC vs. wholesale mix, and inventory dynamics with an interactive Streamlit dashboard.</p>
+            <p class="proj-desc">Comparative financial health analysis across Lululemon, Nike, Under Armour, and Adidas, covering revenue growth, gross margin trends, DTC vs. wholesale mix, and inventory dynamics with an interactive Streamlit dashboard.</p>
             <div class="proj-tags">
               <span class="proj-tag">SEC Filings</span>
               <span class="proj-tag">Financial Modeling</span>
@@ -689,9 +708,9 @@
   <!-- SKILLS -->
   <div class="skills-wrap">
     <section class="skills">
-      <div class="section-label">Capabilities</div>
-      <h2 class="section-title">Skills &amp; <em>Tools</em></h2>
-      <div class="skills-inner">
+      <div class="section-label fade-up">Capabilities</div>
+      <h2 class="section-title fade-up delay-1">Skills &amp; <em>Tools</em></h2>
+      <div class="skills-inner fade-up delay-2">
         <div class="skill-col">
           <div class="skill-heading">Languages</div>
           <div class="skill-item">Python</div>
@@ -904,7 +923,7 @@
             </div>
             <div class="r-entry-org">Financial Analytics · Python</div>
             <ul class="r-bullets">
-              <li>Comparative financial health analysis across Lululemon, Nike, Under Armour, and Adidas — revenue growth, gross margin, DTC vs. wholesale mix, and inventory dynamics with an interactive dashboard.</li>
+              <li>Comparative financial health analysis across Lululemon, Nike, Under Armour, and Adidas, covering revenue growth, gross margin, DTC vs. wholesale mix, and inventory dynamics with an interactive dashboard.</li>
             </ul>
           </div>
         </div>
@@ -953,9 +972,9 @@
   <!-- CONNECT -->
   <div class="connect-wrap" id="contact">
     <section class="connect">
-      <div class="section-label">Get in Touch</div>
-      <h2 class="connect-title">Let's<br><em>Connect</em></h2>
-      <p class="connect-body">Open to full-time roles in marketing analytics, consumer insights, and growth experimentation. Especially drawn to fashion, lifestyle, and athletic wear brands where data serves people with taste — from apparel and accessories to beauty and beyond.</p>
+      <div class="section-label fade-up">Get in Touch</div>
+      <h2 class="connect-title fade-up delay-1">Let's<br><em>Connect</em></h2>
+      <p class="connect-body fade-up delay-2">Open to full-time roles in marketing analytics, consumer insights, and growth experimentation. Especially drawn to fashion, lifestyle, and athletic wear brands where data serves people with taste, from apparel and accessories to beauty and beyond.</p>
       <div class="connect-links">
         <a class="connect-link filled" href="https://www.linkedin.com/in/devyn-k-simmons" target="_blank">LinkedIn</a>
         <a class="connect-link" href="https://github.com/devynsimmonss" target="_blank">GitHub</a>
@@ -970,5 +989,22 @@
     <span class="footer-mark">Built with intention</span>
   </footer>
 
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-up').forEach(el => {
+      observer.observe(el);
+    });
+
+    const heroEls = document.querySelectorAll('.hero .fade-up');
+    heroEls.forEach(el => el.classList.add('visible'));
+  </script>
 </body>
 </html>
