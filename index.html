@@ -1,949 +1,963 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Devyn Simmons</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --cream: #FFF8F3;
-    --blush: #FFD3AC;
-    --pink: #FFB5AB;
-    --sage-light: #FFE8E0;
-    --sage: #FFB5AB;
-    --sage-deep: #E39A7B;
-    --accent: #E39A7B;
-    --accent-dark: #C4784A;
-    --accent-light: #FFD3AC;
-    --gold: #DBB06B;
-    --forest: #3A2A20;
-    --warm-gray: #9A8878;
-    --mid-gray: #6A5A50;
-    --white: #FFFFFF;
-    --serif: 'Cormorant Garamond', Georgia, serif;
-    --sans: 'DM Sans', sans-serif;
-  }
-
-  html { scroll-behavior: smooth; font-size: 16px; }
-
-  body {
-    font-family: var(--sans);
-    background: var(--cream);
-    color: var(--forest);
-    min-height: 100vh;
-    line-height: 1.6;
-  }
-
-  /* NAV */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.25rem 3rem;
-    background: rgba(255, 248, 243, 0.93);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(227, 154, 123, 0.25);
-  }
-
-  .nav-logo {
-    font-family: var(--serif);
-    font-size: 1.35rem;
-    font-weight: 400;
-    letter-spacing: 0.02em;
-    color: var(--forest);
-    cursor: pointer;
-  }
-
-  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-
-  .nav-links a {
-    font-size: 0.78rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--warm-gray);
-    text-decoration: none;
-    transition: color 0.2s;
-    cursor: pointer;
-  }
-
-  .nav-links a:hover, .nav-links a.active { color: var(--accent); }
-
-  /* PAGES */
-  .page { display: none; min-height: 100vh; padding-top: 5rem; animation: fadeIn 0.4s ease; }
-  .page.active { display: block; }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* ---- HOME ---- */
-  .home-hero {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-height: calc(100vh - 5rem);
-    align-items: stretch;
-  }
-
-  .hero-left {
-    padding: 4rem 3rem 4rem 5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .hero-eyebrow {
-    font-size: 0.72rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1.25rem;
-  }
-
-  .hero-name {
-    font-family: var(--serif);
-    font-size: 5.5rem;
-    font-weight: 300;
-    line-height: 0.95;
-    color: var(--forest);
-    margin-bottom: 1.25rem;
-  }
-
-  .hero-name em { font-style: italic; color: var(--accent); }
-
-  .hero-tagline {
-    font-size: 0.97rem;
-    color: var(--warm-gray);
-    font-weight: 300;
-    max-width: 360px;
-    line-height: 1.75;
-    margin-bottom: 2rem;
-  }
-
-  .hero-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.45rem;
-    margin-bottom: 2.25rem;
-    max-width: 380px;
-  }
-
-  .hero-pill {
-    font-size: 0.67rem;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
-    color: var(--sage-deep);
-    background: var(--sage-light);
-    border: 1px solid rgba(227, 154, 123, 0.35);
-    padding: 0.28rem 0.7rem;
-    border-radius: 20px;
-  }
-
-  .hero-actions { display: flex; gap: 1rem; align-items: center; }
-
-  .hero-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.78rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--white);
-    background: var(--accent);
-    border: none;
-    padding: 0.65rem 1.4rem;
-    border-radius: 30px;
-    cursor: pointer;
-    font-family: var(--sans);
-    transition: background 0.2s;
-  }
-
-  .hero-cta:hover { background: #C4784A; }
-
-  .hero-cta-ghost {
-    font-size: 0.78rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--sage-deep);
-    background: none;
-    border: 1px solid rgba(227, 154, 123, 0.45);
-    padding: 0.65rem 1.4rem;
-    border-radius: 30px;
-    cursor: pointer;
-    font-family: var(--sans);
-    transition: background 0.2s, border-color 0.2s;
-  }
-
-  .hero-cta-ghost:hover { background: var(--sage-light); border-color: var(--sage); }
-
-  .hero-right {
-    background: var(--blush);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    padding: 3rem 2.5rem;
-  }
-
-  /* stat card on hero */
-  .hero-card {
-    background: var(--white);
-    border-radius: 4px;
-    width: 100%;
-    max-width: 320px;
-    overflow: hidden;
-    box-shadow: 0 2px 24px rgba(58, 42, 32, 0.07);
-  }
-
-  .hc-header {
-    background: var(--forest);
-    padding: 0.9rem 1.25rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .hc-title { font-family: var(--serif); color: rgba(240,237,232,0.9); font-size: 1rem; font-weight: 300; font-style: italic; }
-  .hc-badge { font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sage-light); background: rgba(227,154,123,0.2); padding: 0.2rem 0.55rem; border-radius: 10px; }
-
-  .hc-body { padding: 1rem 1.25rem; }
-
-  .hc-stat-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.42rem 0;
-    border-bottom: 1px solid rgba(227, 154, 123, 0.18);
-  }
-
-  .hc-stat-row:last-child { border-bottom: none; }
-  .hc-label { font-size: 0.68rem; letter-spacing: 0.07em; text-transform: uppercase; color: var(--warm-gray); }
-  .hc-val { font-family: var(--serif); font-size: 1.15rem; color: var(--forest); }
-
-  .hc-bars {
-    display: flex;
-    align-items: flex-end;
-    gap: 3px;
-    height: 36px;
-    margin-top: 0.75rem;
-  }
-
-  .hc-bar { flex: 1; border-radius: 1px 1px 0 0; background: var(--sage-light); }
-  .hc-bar.hi { background: var(--accent); }
-
-  /* mini info cards on hero */
-  .hero-mini-cards {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.6rem;
-    width: 100%;
-    max-width: 320px;
-  }
-
-  .mini-card {
-    background: var(--white);
-    border-radius: 4px;
-    padding: 0.85rem 1rem;
-    box-shadow: 0 1px 12px rgba(58, 42, 32, 0.06);
-  }
-
-  .mc-label { font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--warm-gray); margin-bottom: 0.3rem; }
-  .mc-val { font-family: var(--serif); font-size: 1.3rem; color: var(--forest); }
-  .mc-sub { font-size: 0.68rem; color: var(--accent); margin-top: 0.15rem; }
-
-  /* ---- ABOUT ---- */
-  .about-layout {
-    max-width: 920px;
-    margin: 0 auto;
-    padding: 5rem 2rem;
-    display: grid;
-    grid-template-columns: 1fr 1.7fr;
-    gap: 5rem;
-    align-items: start;
-  }
-
-  .about-sidebar { position: sticky; top: 7rem; }
-
-  .section-label {
-    font-size: 0.68rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1.25rem;
-  }
-
-  .about-heading {
-    font-family: var(--serif);
-    font-size: 3.2rem;
-    font-weight: 300;
-    line-height: 1.1;
-    color: var(--forest);
-    margin-bottom: 2rem;
-  }
-
-  .about-heading em { font-style: italic; color: var(--accent); }
-
-  .about-pills { display: flex; flex-wrap: wrap; gap: 0.45rem; }
-
-  .pill {
-    font-size: 0.67rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--sage-deep);
-    background: var(--sage-light);
-    border: 1px solid rgba(227, 154, 123, 0.35);
-    padding: 0.28rem 0.7rem;
-    border-radius: 20px;
-  }
-
-  .about-body p {
-    font-size: 0.96rem;
-    color: var(--mid-gray);
-    line-height: 1.85;
-    margin-bottom: 1.35rem;
-    font-weight: 300;
-  }
-
-  .about-body p strong { color: var(--forest); font-weight: 500; }
-
-  /* ---- PROJECTS ---- */
-  .projects-wrap { max-width: 1000px; margin: 0 auto; padding: 5rem 2rem; }
-
-  .projects-header {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    margin-bottom: 2.5rem;
-  }
-
-  .projects-title {
-    font-family: var(--serif);
-    font-size: 3.2rem;
-    font-weight: 300;
-    color: var(--forest);
-  }
-
-  .project-card {
-    background: var(--white);
-    border: 1px solid rgba(227, 154, 123, 0.25);
-    border-radius: 3px;
-    overflow: hidden;
-    margin-bottom: 3px;
-    transition: box-shadow 0.25s;
-  }
-
-  .project-card:hover { box-shadow: 0 4px 30px rgba(58, 42, 32, 0.08); }
-
-  .project-inner {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    min-height: 210px;
-  }
-
-  .project-info {
-    padding: 2.25rem 2.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .project-tag {
-    font-size: 0.67rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 0.6rem;
-  }
-
-  .project-title {
-    font-family: var(--serif);
-    font-size: 1.9rem;
-    font-weight: 300;
-    color: var(--forest);
-    margin-bottom: 0.6rem;
-  }
-
-  .project-desc {
-    font-size: 0.87rem;
-    color: var(--mid-gray);
-    font-weight: 300;
-    line-height: 1.7;
-    flex: 1;
-    margin-bottom: 1.25rem;
-  }
-
-  .privacy-note {
-    font-size: 0.75rem;
-    color: var(--warm-gray);
-    font-style: italic;
-    margin-bottom: 1rem;
-  }
-
-  .project-links { display: flex; gap: 1.5rem; align-items: center; }
-
-  .link-primary {
-    font-size: 0.73rem;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
-    color: var(--forest);
-    text-decoration: none;
-    border-bottom: 1px solid var(--sage);
-    padding-bottom: 2px;
-    transition: color 0.2s;
-  }
-
-  .link-primary:hover { color: var(--accent); }
-
-  .project-visual {
-    background: var(--sage-light);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1.75rem;
-    overflow: hidden;
-  }
-
-  .garmin-preview {
-    background: var(--white);
-    border-radius: 3px;
-    padding: 1rem;
-    width: 100%;
-    box-shadow: 0 2px 16px rgba(58, 42, 32, 0.08);
-  }
-
-  .gp-label { font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--warm-gray); margin-bottom: 0.55rem; }
-
-  .gp-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 0.45rem; margin-bottom: 0.55rem; }
-
-  .gp-stat { background: var(--cream); padding: 0.45rem; border-radius: 2px; text-align: center; }
-  .gp-stat-n { font-family: var(--serif); font-size: 1.05rem; color: var(--forest); display: block; }
-  .gp-stat-l { font-size: 0.56rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--warm-gray); }
-
-  .gp-bars { display: flex; align-items: flex-end; gap: 2px; height: 28px; margin-top: 0.45rem; }
-  .gp-bar { flex: 1; border-radius: 1px 1px 0 0; background: rgba(168,196,160,0.6); }
-  .gp-bar.hi { background: var(--accent); }
-
-  /* industry project visual */
-  .industry-visual {
-    background: var(--accent-light);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1.75rem;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .iv-card {
-    background: var(--white);
-    border-radius: 3px;
-    padding: 0.75rem 1rem;
-    width: 100%;
-    box-shadow: 0 1px 10px rgba(227,154,123,0.1);
-  }
-
-  .iv-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.3rem 0;
-    border-bottom: 1px solid rgba(227,154,123,0.15);
-    font-size: 0.7rem;
-  }
-
-  .iv-row:last-child { border-bottom: none; }
-  .iv-key { color: var(--warm-gray); }
-  .iv-val { color: var(--accent); font-weight: 500; }
-
-  .placeholder-card {
-    background: var(--sage-light);
-    border: 1.5px dashed rgba(227, 154, 123, 0.55);
-    border-radius: 3px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 0.65rem;
-    min-height: 120px;
-    color: var(--warm-gray);
-    font-weight: 300;
-    margin-top: 3px;
-    padding: 2rem;
-    text-align: center;
-  }
-
-  .placeholder-card span { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
-
-  /* ---- RESUME ---- */
-  .resume-layout { max-width: 800px; margin: 0 auto; padding: 5rem 2rem; }
-
-  .resume-section { margin-bottom: 3.25rem; }
-
-  .resume-heading {
-    font-family: var(--serif);
-    font-size: 1.35rem;
-    font-weight: 400;
-    color: var(--forest);
-    margin-bottom: 1.35rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid rgba(227, 154, 123, 0.3);
-  }
-
-  .resume-item { margin-bottom: 1.6rem; }
-
-  .resume-item-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 0.25rem;
-  }
-
-  .resume-role { font-size: 0.9rem; font-weight: 500; color: var(--forest); }
-  .resume-date { font-size: 0.74rem; color: var(--warm-gray); letter-spacing: 0.04em; }
-  .resume-org { font-size: 0.79rem; color: var(--accent); margin-bottom: 0.35rem; font-style: italic; }
-
-  .resume-detail {
-    font-size: 0.84rem;
-    color: var(--mid-gray);
-    font-weight: 300;
-    line-height: 1.65;
-  }
-
-  .skill-grid { display: flex; flex-wrap: wrap; gap: 0.45rem; }
-
-  .skill-tag {
-    font-size: 0.74rem;
-    color: var(--forest);
-    background: var(--sage-light);
-    border: 1px solid rgba(227, 154, 123, 0.35);
-    padding: 0.28rem 0.75rem;
-    border-radius: 20px;
-    font-weight: 400;
-  }
-
-  /* ---- CONTACT ---- */
-  .contact-layout {
-    max-width: 680px;
-    margin: 0 auto;
-    padding: 5rem 2rem;
-    text-align: center;
-  }
-
-  .contact-heading {
-    font-family: var(--serif);
-    font-size: 4rem;
-    font-weight: 300;
-    line-height: 1.1;
-    color: var(--forest);
-    margin-bottom: 1rem;
-  }
-
-  .contact-heading em { font-style: italic; color: var(--accent); }
-
-  .contact-sub {
-    font-size: 0.9rem;
-    color: var(--mid-gray);
-    font-weight: 300;
-    max-width: 440px;
-    margin: 0 auto 2.75rem;
-    line-height: 1.75;
-  }
-
-  .contact-links {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-bottom: 2.5rem;
-  }
-
-  .contact-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-size: 0.76rem;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
-    color: var(--forest);
-    text-decoration: none;
-    padding: 0.65rem 1.35rem;
-    border: 1px solid rgba(227, 154, 123, 0.35);
-    border-radius: 30px;
-    background: var(--white);
-    transition: background 0.2s, border-color 0.2s;
-  }
-
-  .contact-link:hover { background: var(--sage-light); border-color: var(--sage); }
-
-  .contact-email {
-    font-family: var(--serif);
-    font-size: 1.45rem;
-    font-weight: 300;
-    color: var(--accent);
-    font-style: italic;
-  }
-
-  footer {
-    text-align: center;
-    padding: 2rem;
-    font-size: 0.7rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--warm-gray);
-    border-top: 1px solid rgba(168, 196, 160, 0.25);
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Devyn Simmons — Analytics Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:   #FAF7F2;
+      --blush:   #F2EBE4;
+      --border:  #D9C9BC;
+      --espresso:#2C1F1A;
+      --dark2:   #3D2E27;
+      --dark3:   #4A3830;
+      --wine:    #7B3F35;
+      --clay:    #9C6B5E;
+      --mauve:   #B8899A;
+      --muted:   #7D6A62;
+      --faint:   #A8928A;
+      --body:    #5C4A42;
+      --proj-text:#8C7A72;
+      --proj-tag: #7D6A62;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--espresso);
+      font-size: 14px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 48px 16px;
+      border-bottom: 0.5px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: var(--cream);
+      z-index: 100;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--espresso);
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--wine); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 56px 48px 0;
+      border-bottom: 0.5px solid var(--border);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--clay);
+      font-weight: 500;
+      margin-bottom: 14px;
+    }
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(64px, 10vw, 96px);
+      font-weight: 300;
+      line-height: 0.88;
+      color: var(--espresso);
+      letter-spacing: -0.01em;
+    }
+    .hero-name em {
+      font-style: italic;
+      color: var(--wine);
+    }
+    .rule {
+      width: 100%;
+      height: 0.5px;
+      background: var(--border);
+      margin: 26px 0 20px;
+    }
+    .hero-bottom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 40px;
+      align-items: end;
+    }
+    .hero-tagline {
+      font-size: 14px;
+      color: var(--body);
+      line-height: 1.9;
+      font-weight: 300;
+    }
+    .hero-tagline strong {
+      font-weight: 500;
+      color: var(--espresso);
+    }
+    .hero-cta {
+      margin-top: 24px;
+      display: flex;
+      gap: 12px;
+    }
+    .btn {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 10px 22px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s;
+      display: inline-block;
+    }
+    .btn-wine {
+      background: var(--wine);
+      color: var(--cream);
+      border: 0.5px solid var(--wine);
+    }
+    .btn-wine:hover { background: #6A3530; border-color: #6A3530; }
+    .btn-outline {
+      background: transparent;
+      color: var(--espresso);
+      border: 0.5px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--muted); }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      border: 0.5px solid var(--border);
+    }
+    .stat {
+      padding: 16px 20px 14px;
+      border-right: 0.5px solid var(--border);
+      border-bottom: 0.5px solid var(--border);
+    }
+    .stat:nth-child(2) { border-right: none; }
+    .stat:nth-child(3) { border-bottom: none; border-right: 0.5px solid var(--border); }
+    .stat:nth-child(4) { border-bottom: none; border-right: none; }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      font-weight: 600;
+      color: var(--espresso);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--faint);
+      margin-top: 4px;
+    }
+
+    /* ── SECTIONS ── */
+    section { max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 9px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--clay);
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--espresso);
+      margin-bottom: 20px;
+    }
+    .section-title em { font-style: italic; color: var(--wine); }
+
+    /* ── ABOUT ── */
+    .about-wrap {
+      background: var(--blush);
+      border-bottom: 0.5px solid var(--border);
+      padding: 0 0;
+    }
+    .about {
+      padding: 48px 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+    .body-text {
+      font-size: 13px;
+      color: var(--body);
+      line-height: 1.9;
+      font-weight: 300;
+    }
+    .body-text + .body-text { margin-top: 14px; }
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 20px;
+    }
+    .pill {
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border: 0.5px solid var(--border);
+      color: var(--muted);
+    }
+    .pill-wine { background: var(--wine); border-color: var(--wine); color: #F5EAE6; }
+    .pill-mauve { background: var(--mauve); border-color: var(--mauve); color: var(--espresso); }
+
+    .creds { display: flex; flex-direction: column; gap: 20px; padding-top: 6px; }
+    .cred { border-left: 2px solid var(--clay); padding-left: 16px; }
+    .cred-title { font-size: 13px; font-weight: 500; color: var(--espresso); line-height: 1.4; }
+    .cred-sub { font-size: 12px; color: var(--faint); margin-top: 3px; }
+
+    /* ── PROJECTS ── */
+    .projects-wrap {
+      background: var(--espresso);
+      border-bottom: 0.5px solid var(--dark2);
+    }
+    .projects {
+      padding: 48px 48px;
+    }
+    .projects .section-label { color: var(--mauve); }
+    .projects .section-title { color: var(--cream); }
+
+    .proj-grid { display: flex; flex-direction: column; gap: 12px; margin-top: 6px; }
+    .proj-card {
+      border: 0.5px solid var(--dark2);
+      padding: 24px 26px;
+      background: rgba(255,255,255,0.03);
+      display: grid;
+      grid-template-columns: 1fr 28px;
+      gap: 16px;
+      align-items: start;
+      transition: border-color 0.2s;
+    }
+    .proj-card:hover { border-color: var(--clay); }
+    .proj-card.soon { border-style: dashed; border-color: var(--dark3); }
+    .proj-card.soon:hover { border-color: var(--mauve); }
+    .proj-meta {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 7px;
+    }
+    .proj-meta.mauve { color: var(--mauve); }
+    .proj-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .proj-title.mauve { color: var(--mauve); font-style: italic; }
+    .proj-desc { font-size: 12.5px; color: var(--proj-text); line-height: 1.75; font-weight: 300; }
+    .proj-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+    .proj-tag {
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      background: var(--dark2);
+      color: var(--proj-tag);
+    }
+    .proj-links { display: flex; gap: 10px; margin-top: 14px; }
+    .proj-link {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--clay);
+      text-decoration: none;
+      border-bottom: 0.5px solid var(--clay);
+      padding-bottom: 1px;
+      transition: color 0.2s;
+    }
+    .proj-link:hover { color: var(--mauve); border-color: var(--mauve); }
+    .proj-arrow { font-size: 20px; color: var(--clay); align-self: center; }
+    .proj-arrow.mauve { color: var(--mauve); font-size: 15px; }
+
+    /* ── SKILLS ── */
+    .skills-wrap {
+      border-bottom: 0.5px solid var(--border);
+    }
+    .skills { padding: 48px 48px; }
+    .skills-inner {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      background: var(--espresso);
+      margin-top: 20px;
+    }
+    .skill-col {
+      padding: 24px 24px 28px;
+      border-right: 0.5px solid var(--dark2);
+    }
+    .skill-col:last-child { border-right: none; }
+    .skill-heading {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--mauve);
+      font-weight: 500;
+      margin-bottom: 14px;
+    }
+    .skill-item {
+      font-size: 13px;
+      color: #C4AFA8;
+      line-height: 2.2;
+      font-weight: 300;
+    }
+
+    /* ── CONNECT ── */
+    .connect-wrap { background: var(--wine); }
+    .connect { padding: 56px 48px 52px; }
+    .connect .section-label { color: #D4A99E; margin-bottom: 14px; }
+    .connect-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(40px, 6vw, 60px);
+      font-weight: 300;
+      line-height: 1;
+      color: var(--cream);
+      margin-bottom: 20px;
+    }
+    .connect-title em { font-style: italic; }
+    .connect-body {
+      font-size: 14px;
+      color: rgba(250,247,242,0.82);
+      line-height: 1.85;
+      font-weight: 300;
+      max-width: 480px;
+      margin-bottom: 30px;
+    }
+    .connect-links { display: flex; gap: 12px; flex-wrap: wrap; }
+    .connect-link {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--cream);
+      border: 0.5px solid rgba(250,247,242,0.45);
+      padding: 10px 22px;
+      text-decoration: none;
+      font-weight: 400;
+      transition: all 0.2s;
+    }
+    .connect-link:hover { background: rgba(250,247,242,0.12); }
+    .connect-link.filled { background: var(--espresso); border-color: var(--espresso); }
+    .connect-link.filled:hover { background: var(--dark2); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--espresso);
+      padding: 16px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-text {
+      font-size: 10px;
+      color: var(--dark3);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .footer-mark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px;
+      color: var(--dark3);
+      font-style: italic;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px 12px; }
+      .nav-links { gap: 16px; }
+      .hero { padding: 36px 24px 0; }
+      .hero-bottom { grid-template-columns: 1fr; gap: 28px; }
+      .about { padding: 36px 24px; grid-template-columns: 1fr; gap: 32px; }
+      .projects { padding: 36px 24px; }
+      .skills { padding: 36px 24px; }
+      .skills-inner { grid-template-columns: 1fr; }
+      .skill-col { border-right: none; border-bottom: 0.5px solid var(--dark2); }
+      .skill-col:last-child { border-bottom: none; }
+      .connect { padding: 40px 24px 36px; }
+      footer { padding: 14px 24px; }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .proj-card, .connect-link, .btn { transition: all 0.2s ease; }
+    }
+
+    /* ── RESUME ── */
+    .resume-wrap { border-bottom: 0.5px solid var(--border); }
+    .resume-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 48px 56px;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 0;
+    }
+    .resume-left {
+      padding: 0 36px 0 0;
+      border-right: 0.5px solid var(--border);
+    }
+    .resume-right { padding: 0 0 0 40px; }
+
+    .r-block { margin-bottom: 36px; }
+    .r-block:last-child { margin-bottom: 0; }
+    .r-label {
+      font-size: 9px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--clay);
+      font-weight: 500;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 0.5px solid var(--border);
+    }
+    .r-edu { margin-bottom: 20px; }
+    .r-edu:last-child { margin-bottom: 0; }
+    .r-edu-degree { font-size: 13px; font-weight: 500; color: var(--espresso); line-height: 1.4; }
+    .r-edu-school { font-size: 12px; color: var(--body); margin-top: 2px; }
+    .r-edu-detail { font-size: 11px; color: var(--faint); margin-top: 3px; line-height: 1.6; }
+    .r-edu-gpa {
+      display: inline-block;
+      font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 3px 8px; background: var(--wine); color: #F5EAE6; margin-top: 6px;
+    }
+
+    .r-skill-group { margin-bottom: 16px; }
+    .r-skill-group:last-child { margin-bottom: 0; }
+    .r-skill-group-name { font-size: 10px; font-weight: 500; color: var(--espresso); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.06em; }
+    .r-skill-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .r-skill-tag { font-size: 10px; padding: 3px 8px; border: 0.5px solid var(--border); color: var(--muted); }
+    .r-skill-tag.wine { background: var(--wine); border-color: var(--wine); color: #F5EAE6; }
+    .r-skill-tag.mauve { background: var(--mauve); border-color: var(--mauve); color: var(--espresso); }
+
+    .r-lang { margin-bottom: 10px; }
+    .r-lang:last-child { margin-bottom: 0; }
+    .r-lang-name { font-size: 12px; font-weight: 500; color: var(--espresso); }
+    .r-lang-level { font-size: 11px; color: var(--faint); }
+
+    .r-entry { margin-bottom: 26px; padding-bottom: 26px; border-bottom: 0.5px solid var(--border); }
+    .r-entry:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+    .r-entry-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 3px; }
+    .r-entry-title { font-size: 13px; font-weight: 500; color: var(--espresso); line-height: 1.3; }
+    .r-entry-date { font-size: 10px; color: var(--faint); text-transform: uppercase; letter-spacing: 0.08em; white-space: nowrap; padding-top: 2px; }
+    .r-entry-org { font-size: 12px; color: var(--clay); margin-bottom: 9px; font-weight: 400; }
+    .r-entry-org a { color: var(--clay); text-decoration: none; }
+    .r-entry-org a:hover { color: var(--wine); }
+    .r-bullets { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .r-bullets li { font-size: 12.5px; color: var(--body); line-height: 1.7; font-weight: 300; padding-left: 16px; position: relative; }
+    .r-bullets li::before { content: '—'; position: absolute; left: 0; color: var(--clay); font-size: 11px; }
+
+    @media (max-width: 768px) {
+      .resume-inner { padding: 36px 24px 48px; grid-template-columns: 1fr; }
+      .resume-left { padding: 0 0 32px; border-right: none; border-bottom: 0.5px solid var(--border); }
+      .resume-right { padding: 32px 0 0; }
+    }
+  </style>
 </head>
 <body>
 
-<nav>
-  <span class="nav-logo" onclick="showPage('home')">Devyn Simmons</span>
-  <ul class="nav-links">
-    <li><a onclick="showPage('home')" id="nav-home" class="active">Home</a></li>
-    <li><a onclick="showPage('about')" id="nav-about">About</a></li>
-    <li><a onclick="showPage('projects')" id="nav-projects">Projects</a></li>
-    <li><a onclick="showPage('resume')" id="nav-resume">Resume</a></li>
-    <li><a onclick="showPage('contact')" id="nav-contact">Contact</a></li>
-  </ul>
-</nav>
+  <nav>
+    <a href="index.html" class="nav-logo">Devyn Simmons</a>
+    <ul class="nav-links">
+      <li><a href="index.html#work">Work</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="#resume">Resume</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-<!-- HOME -->
-<div id="page-home" class="page active">
-  <div class="home-hero">
-    <div class="hero-left">
-      <p class="hero-eyebrow">Business Analytics · Sports, Health &amp; Outdoor Industry</p>
-      <h1 class="hero-name">Devyn<br/><em>Simmons</em></h1>
-      <p class="hero-tagline">Cal Poly MSBA candidate graduating June 2026, ready to step into my career. UC Davis Statistical Data Science alum and D1 soccer athlete passionate about applying data to sports, health, athletic performance, and the outdoor industry.</p>
-      <div class="hero-pills">
-        <span class="hero-pill">Python</span>
-        <span class="hero-pill">SQL</span>
-        <span class="hero-pill">R</span>
-        <span class="hero-pill">Tableau</span>
-        <span class="hero-pill">Marketing Analytics</span>
-        <span class="hero-pill">Predictive Modeling</span>
-        <span class="hero-pill">AWS Certified</span>
-        <span class="hero-pill">French Fluent</span>
-        <span class="hero-pill">Outdoor Industry</span>
-      </div>
-      <div class="hero-actions">
-        <button class="hero-cta" onclick="showPage('projects')">View Projects</button>
-        <button class="hero-cta-ghost" onclick="showPage('contact')">Get in Touch</button>
-      </div>
-    </div>
-    <div class="hero-right">
-      <div class="hero-card">
-        <div class="hc-header">
-          <span class="hc-title">Garmin Running Analytics</span>
-          <span class="hc-badge">Live</span>
+  <!-- HERO -->
+  <div style="border-bottom: 0.5px solid var(--border);">
+    <div class="hero">
+      <div class="eyebrow">Analytics · Fashion · Consumer · Culture</div>
+      <h1 class="hero-name">Devyn<br><em>Simmons</em></h1>
+      <div class="rule"></div>
+      <div class="hero-bottom">
+        <div>
+          <p class="hero-tagline">MS Business Analytics · Cal Poly SLO · Former D1 athlete.<br>Translating <strong>consumer behavior</strong> and cultural data into strategy for brands that shape how people dress, move, and live.</p>
+          <div class="hero-cta">
+            <a href="index.html#work" class="btn btn-wine">View Work</a>
+            <a href="index.html#contact" class="btn btn-outline">Get in Touch</a>
+          </div>
         </div>
-        <div class="hc-body">
-          <div class="hc-stat-row"><span class="hc-label">Total runs</span><span class="hc-val">123</span></div>
-          <div class="hc-stat-row"><span class="hc-label">Miles logged</span><span class="hc-val">402</span></div>
-          <div class="hc-stat-row"><span class="hc-label">Peak VO2Max</span><span class="hc-val">51</span></div>
-          <div class="hc-stat-row"><span class="hc-label">Median pace</span><span class="hc-val">8:58 /mi</span></div>
-          <div class="hc-bars">
-            <div class="hc-bar" style="height:38%"></div>
-            <div class="hc-bar" style="height:52%"></div>
-            <div class="hc-bar" style="height:44%"></div>
-            <div class="hc-bar" style="height:68%"></div>
-            <div class="hc-bar" style="height:58%"></div>
-            <div class="hc-bar hi" style="height:92%"></div>
-            <div class="hc-bar" style="height:72%"></div>
-            <div class="hc-bar" style="height:48%"></div>
-            <div class="hc-bar" style="height:62%"></div>
-            <div class="hc-bar" style="height:40%"></div>
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-num">5</div>
+            <div class="stat-label">Years of analytics</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">D1</div>
+            <div class="stat-label">NCAA Athlete</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">3.91</div>
+            <div class="stat-label">MS GPA</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">70M</div>
+            <div class="stat-label">Rows analyzed</div>
           </div>
         </div>
       </div>
-      <div class="hero-mini-cards">
-        <div class="mini-card">
-          <p class="mc-label">Current role</p>
-          <p class="mc-val" style="font-size:1rem;">NVIDIA</p>
-          <p class="mc-sub">Industry Project</p>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="about-wrap" id="about">
+    <div class="about">
+      <div>
+        <div class="section-label">About</div>
+        <h2 class="section-title">Analyst.<br><em>Athlete.</em><br>Fashion-obsessed.</h2>
+        <p class="body-text">Business analytics master's student at Cal Poly SLO with a background in Statistical Data Science from UC Davis, where I spent four years as a Division I soccer athlete. I've always believed the best brands don't just sell products — they sell a feeling.</p>
+        <p class="body-text">Drawn to roles at the intersection of consumer behavior, culture, and data — at fashion brands, lifestyle retailers, or athletic wear companies where analytics serves people with taste.</p>
+        <div class="pills">
+          <span class="pill pill-wine">Marketing Analytics</span>
+          <span class="pill pill-wine">Consumer Insights</span>
+          <span class="pill pill-mauve">Trend Forecasting</span>
+          <span class="pill">Fashion</span>
+          <span class="pill">Athletic Wear</span>
+          <span class="pill">Lifestyle Brands</span>
         </div>
-        <div class="mini-card">
-          <p class="mc-label">GPA</p>
-          <p class="mc-val">3.89</p>
-          <p class="mc-sub">MS Business Analytics</p>
+      </div>
+      <div class="creds">
+        <div class="cred">
+          <div class="cred-title">MS, Business Analytics</div>
+          <div class="cred-sub">Cal Poly SLO · GPA 3.91 · 2025–26</div>
         </div>
-        <div class="mini-card">
-          <p class="mc-label">Athletic background</p>
-          <p class="mc-val" style="font-size:1rem;">D1</p>
-          <p class="mc-sub">Women's Soccer · 4 years</p>
+        <div class="cred">
+          <div class="cred-title">BS, Statistical Data Science</div>
+          <div class="cred-sub">UC Davis · French Minor · D1 Soccer · 2021–25</div>
         </div>
-        <div class="mini-card">
-          <p class="mc-label">Languages</p>
-          <p class="mc-val" style="font-size:1rem;">FR / EN</p>
-          <p class="mc-sub">Fluent + Native</p>
+        <div class="cred">
+          <div class="cred-title">NVIDIA — Marketing & Product Analyst</div>
+          <div class="cred-sub">Industry Project · 70M row dataset · 2026</div>
+        </div>
+        <div class="cred">
+          <div class="cred-title">Head Campus Captain</div>
+          <div class="cred-sub">The Hidden Opponent · Mental health in sport</div>
+        </div>
+        <div class="cred">
+          <div class="cred-title">AWS Certified · French Fluent</div>
+          <div class="cred-sub">Cloud Practitioner · Native English</div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- ABOUT -->
-<div id="page-about" class="page">
-  <div class="about-layout">
-    <div class="about-sidebar">
-      <p class="section-label">About me</p>
-      <h2 class="about-heading">Analyst.<br/><em>Athlete.</em><br/>Outdoorsy.</h2>
-      <div class="about-pills">
-        <span class="pill">Sports Analytics</span>
-        <span class="pill">Health Industry</span>
-        <span class="pill">Athletic Wear</span>
-        <span class="pill">Outdoor Industry</span>
-        <span class="pill">National Parks</span>
-        <span class="pill">Marketing Analytics</span>
-        <span class="pill">Experimentation</span>
-        <span class="pill">Python</span>
-        <span class="pill">SQL</span>
-        <span class="pill">Tableau</span>
-      </div>
-    </div>
-    <div class="about-body">
-      <p>I'm a <strong>business analytics master's student at Cal Poly SLO</strong> with a BS in Statistical Data Science from UC Davis, where I spent four years competing as a Division I soccer athlete. Data and sport have been intertwined for me for a long time.</p>
-      <p>My goal is to work in the <strong>sports, athletic wear, outdoor, or health industry</strong>, applying my analytical skills to problems that genuinely matter to athletes and active people. I'm drawn to roles where consumer behavior, product engagement, and performance data all intersect, whether that's at a global athletic brand, an outdoor retailer, or a national park or conservation organization.</p>
-      <p>My academic focus covers <strong>marketing analytics, financial analytics, and experimental design</strong>, with hands-on experience in predictive modeling, cohort analysis, customer segmentation, and data storytelling across technical and non-technical audiences.</p>
-      <p>Outside of work and school, I train a lot. Running, lifting, and sculpt classes are regular parts of my week. I also love getting outdoors, whether that's hiking, camping, or photographing landscapes. The mountains and the trail are where I reset, and a big part of why I'm drawn to companies and organizations that exist to get people outside.</p>
-      <p>I'm also a <strong>Head Campus Captain for The Hidden Opponent</strong>, a national mental health organization for student athletes, a Treasurer for the Graduate Student Association, and an Instructional Assistant in Statistics and Data Science at Cal Poly.</p>
-    </div>
-  </div>
-</div>
+  <!-- PROJECTS -->
+  <div class="projects-wrap" id="work">
+    <section class="projects">
+      <div class="section-label">Selected Work</div>
+      <h2 class="section-title">Work &amp; <em style="color: var(--mauve)">Projects</em></h2>
+      <div class="proj-grid">
 
-<!-- PROJECTS -->
-<div id="page-projects" class="page">
-  <div class="projects-wrap">
-    <div class="projects-header">
-      <h2 class="projects-title">Work &amp; <em style="font-style:italic;color:var(--accent);font-style:italic;">Projects</em></h2>
-      <p style="font-size:0.75rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--warm-gray);">Selected work</p>
-    </div>
-
-    <!-- Garmin -->
-    <div class="project-card">
-      <div class="project-inner">
-        <div class="project-info">
+        <div class="proj-card">
           <div>
-            <p class="project-tag">Personal Project · Sports Analytics · Python</p>
-            <h3 class="project-title">Garmin Running Analytics</h3>
-            <p class="project-desc">A personal analysis of wearable Garmin data uncovering trends in running performance and recovery. Built predictive models to estimate marathon outcomes and developed an interactive dashboard to support training decisions. Motivated by the lack of research on women's health and endurance sport.</p>
-          </div>
-          <div class="project-links">
-            <a class="link-primary" href="https://devynsimmonss.github.io/garmin-analytics/" target="_blank">View Live Site</a>
-            <a class="link-primary" href="https://devynsimmonss.github.io/garmin-analytics/dashboard.html" target="_blank">Open Dashboard</a>
-          </div>
-        </div>
-        <div class="project-visual">
-          <div class="garmin-preview">
-            <p class="gp-label">Dec 2024 to May 2026</p>
-            <div class="gp-stats">
-              <div class="gp-stat"><span class="gp-stat-n">123</span><span class="gp-stat-l">runs</span></div>
-              <div class="gp-stat"><span class="gp-stat-n">402</span><span class="gp-stat-l">miles</span></div>
-              <div class="gp-stat"><span class="gp-stat-n">51</span><span class="gp-stat-l">vo2max</span></div>
-              <div class="gp-stat"><span class="gp-stat-n">8:58</span><span class="gp-stat-l">pace</span></div>
+            <div class="proj-meta">Personal · Sports Analytics · Python</div>
+            <div class="proj-title">Garmin Running Analytics</div>
+            <p class="proj-desc">Personal wearable data analysis uncovering trends in running performance and recovery. Predictive models for marathon outcomes and an interactive training dashboard — motivated by the gap in women's endurance research.</p>
+            <div class="proj-tags">
+              <span class="proj-tag">Python</span>
+              <span class="proj-tag">Predictive Modeling</span>
+              <span class="proj-tag">Wearables</span>
+              <span class="proj-tag">Women's Health</span>
+              <span class="proj-tag">Quarto</span>
             </div>
-            <div class="gp-bars">
-              <div class="gp-bar" style="height:38%"></div>
-              <div class="gp-bar" style="height:52%"></div>
-              <div class="gp-bar" style="height:44%"></div>
-              <div class="gp-bar" style="height:68%"></div>
-              <div class="gp-bar" style="height:58%"></div>
-              <div class="gp-bar hi" style="height:92%"></div>
-              <div class="gp-bar" style="height:72%"></div>
-              <div class="gp-bar" style="height:48%"></div>
+            <div class="proj-links">
+              <a class="proj-link" href="https://devynsimmonss.github.io/garmin-analytics/" target="_blank">Live Site →</a>
+              <a class="proj-link" href="https://devynsimmonss.github.io/garmin-analytics/dashboard.html" target="_blank">Dashboard →</a>
             </div>
           </div>
+          <div class="proj-arrow">→</div>
         </div>
-      </div>
-    </div>
 
-    <!-- NVIDIA -->
-    <div class="project-card">
-      <div class="project-inner">
-        <div class="project-info">
+        <div class="proj-card">
           <div>
-            <p class="project-tag">Industry Project · Marketing Analytics · SQL · Python · DuckDB</p>
-            <h3 class="project-title">NVIDIA Product Engagement</h3>
-            <p class="project-desc">Managed and analyzed large-scale engagement datasets (~70M rows) using SQL, Python, and DuckDB to identify product adoption trends. Translated findings into consumer-focused insights and strategic recommendations, presenting across technical and business audiences.</p>
-            <p class="privacy-note">Full details are confidential per industry project agreement.</p>
+            <div class="proj-meta">Industry · Marketing Analytics · SQL · Python · DuckDB</div>
+            <div class="proj-title">NVIDIA Product Engagement</div>
+            <p class="proj-desc">Managed and analyzed large-scale engagement datasets (~70M rows) to identify product adoption trends. Translated findings into consumer-focused insights and strategic recommendations for technical and business audiences. Full details confidential per industry agreement.</p>
+            <div class="proj-tags">
+              <span class="proj-tag">SQL</span>
+              <span class="proj-tag">DuckDB</span>
+              <span class="proj-tag">Python</span>
+              <span class="proj-tag">Consumer Insights</span>
+              <span class="proj-tag">Segmentation</span>
+            </div>
           </div>
-          <div class="project-links">
-            <span style="font-size:0.73rem;letter-spacing:0.09em;text-transform:uppercase;color:var(--warm-gray);">Mar 2026 to Jun 2026</span>
-          </div>
+          <div class="proj-arrow">→</div>
         </div>
-        <div class="industry-visual">
-          <div class="iv-card">
-            <div class="iv-row"><span class="iv-key">Dataset size</span><span class="iv-val">~70M rows</span></div>
-            <div class="iv-row"><span class="iv-key">Tools</span><span class="iv-val">SQL · Python · DuckDB</span></div>
-            <div class="iv-row"><span class="iv-key">Focus</span><span class="iv-val">Product adoption</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- Oracle -->
-    <div class="project-card">
-      <div class="project-inner">
-        <div class="project-info">
+        <div class="proj-card">
           <div>
-            <p class="project-tag">Industry Project · Customer Analytics · Python · R</p>
-            <h3 class="project-title">Oracle Customer Churn &amp; Retention</h3>
-            <p class="project-desc">Built churn and retention analysis using Python and R, segmenting customers into 9 behavioral cohorts and identifying high-risk groups. Modeling uncovered early churn signals and delivered targeted retention strategies projected to reduce churn from 14.5% to 6.6% for key segments.</p>
-            <p class="privacy-note">Full details are confidential per industry project agreement.</p>
+            <div class="proj-meta">Industry · Customer Analytics · Python · R</div>
+            <div class="proj-title">Oracle Customer Churn &amp; Retention</div>
+            <p class="proj-desc">Segmented customers into 9 behavioral cohorts and identified high-risk churn groups. Modeling uncovered early churn signals and delivered targeted retention strategies projected to reduce churn from 14.5% to 6.6% for key segments. Full details confidential per industry agreement.</p>
+            <div class="proj-tags">
+              <span class="proj-tag">Python</span>
+              <span class="proj-tag">R</span>
+              <span class="proj-tag">Cohort Analysis</span>
+              <span class="proj-tag">Survival Analysis</span>
+              <span class="proj-tag">Retention</span>
+            </div>
           </div>
-          <div class="project-links">
-            <span style="font-size:0.73rem;letter-spacing:0.09em;text-transform:uppercase;color:var(--warm-gray);">Jan 2026 to Mar 2026</span>
-          </div>
+          <div class="proj-arrow">→</div>
         </div>
-        <div class="industry-visual">
-          <div class="iv-card">
-            <div class="iv-row"><span class="iv-key">Cohorts</span><span class="iv-val">9 behavioral segments</span></div>
-            <div class="iv-row"><span class="iv-key">Churn reduction</span><span class="iv-val">14.5% to 6.6%</span></div>
-            <div class="iv-row"><span class="iv-key">Tools</span><span class="iv-val">Python · R</span></div>
+
+        <div class="proj-card soon">
+          <div>
+            <div class="proj-meta mauve">In Progress · Fashion Analytics · Python · NLP</div>
+            <div class="proj-title mauve">Social Signal to Sales</div>
+            <p class="proj-desc">Influencer-driven trend forecasting in fashion and athletic apparel — correlating creator engagement spikes with trend rise/peak/decline cycles using NLP on captions and quasi-experimental A/B methods.</p>
+            <div class="proj-tags">
+              <span class="proj-tag">NLP</span>
+              <span class="proj-tag">Trend Forecasting</span>
+              <span class="proj-tag">A/B Testing</span>
+              <span class="proj-tag">Influencer Analytics</span>
+              <span class="proj-tag">Fashion</span>
+            </div>
           </div>
+          <div class="proj-arrow mauve">◦</div>
+        </div>
+
+        <div class="proj-card soon">
+          <div>
+            <div class="proj-meta mauve">In Progress · Financial Analytics · Python</div>
+            <div class="proj-title mauve">Athletic Apparel Brand Benchmarking</div>
+            <p class="proj-desc">Comparative financial health analysis across Lululemon, Nike, Under Armour, and Adidas — revenue growth, gross margin trends, DTC vs. wholesale mix, and inventory dynamics with an interactive Streamlit dashboard.</p>
+            <div class="proj-tags">
+              <span class="proj-tag">SEC Filings</span>
+              <span class="proj-tag">Financial Modeling</span>
+              <span class="proj-tag">Benchmarking</span>
+              <span class="proj-tag">Dashboard</span>
+            </div>
+          </div>
+          <div class="proj-arrow mauve">◦</div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="skills-wrap">
+    <section class="skills">
+      <div class="section-label">Capabilities</div>
+      <h2 class="section-title">Skills &amp; <em>Tools</em></h2>
+      <div class="skills-inner">
+        <div class="skill-col">
+          <div class="skill-heading">Languages</div>
+          <div class="skill-item">Python</div>
+          <div class="skill-item">SQL</div>
+          <div class="skill-item">R</div>
+          <div class="skill-item">French (Fluent)</div>
+        </div>
+        <div class="skill-col">
+          <div class="skill-heading">Analytics</div>
+          <div class="skill-item">Predictive Modeling</div>
+          <div class="skill-item">A/B Testing &amp; Experimentation</div>
+          <div class="skill-item">Cohort Analysis</div>
+          <div class="skill-item">Consumer Insights</div>
+          <div class="skill-item">Trend Forecasting</div>
+          <div class="skill-item">Survival Analysis</div>
+          <div class="skill-item">Customer Segmentation</div>
+          <div class="skill-item">Time Series Analysis</div>
+          <div class="skill-item">Sentiment Analysis</div>
+        </div>
+        <div class="skill-col">
+          <div class="skill-heading">Tools</div>
+          <div class="skill-item">Tableau</div>
+          <div class="skill-item">DuckDB</div>
+          <div class="skill-item">Quarto</div>
+          <div class="skill-item">Positron</div>
+          <div class="skill-item">GitHub</div>
+          <div class="skill-item">Excel</div>
+          <div class="skill-item">Keynote</div>
+          <div class="skill-item">Canva</div>
+          <div class="skill-item">AWS Certified</div>
         </div>
       </div>
-    </div>
+    </section>
+  </div>
 
-    <div class="placeholder-card">
-      <span>More projects coming soon</span>
-      <p style="font-size:0.82rem;color:var(--warm-gray);font-weight:300;max-width:320px;">I plan to keep building projects on topics I find interesting, especially around sports performance, health data, consumer behavior in the athletic space, and the outdoor industry.</p>
+  <!-- RESUME -->
+  <div class="resume-wrap" id="resume">
+    <div style="max-width:1100px; margin: 0 auto; padding: 48px 48px 0;">
+      <div class="section-label">Curriculum Vitae</div>
+      <h2 class="section-title">Experience &amp; <em>Background</em></h2>
+    </div>
+    <div class="resume-inner" style="padding-top: 24px;">
+
+      <!-- LEFT: Education, Skills, Certs, Languages -->
+      <div class="resume-left">
+
+        <div class="r-block">
+          <div class="r-label">Education</div>
+          <div class="r-edu">
+            <div class="r-edu-degree">MS, Business Analytics</div>
+            <div class="r-edu-school">Cal Poly San Luis Obispo</div>
+            <div class="r-edu-detail">Aug 2025 – Jun 2026</div>
+            <div class="r-edu-detail">Marketing Analytics, Financial Analytics, Experimental Design, Predictive Modeling</div>
+            <span class="r-edu-gpa">GPA 3.91</span>
+          </div>
+          <div class="r-edu">
+            <div class="r-edu-degree">BS, Statistical Data Science</div>
+            <div class="r-edu-school">UC Davis · French Minor</div>
+            <div class="r-edu-detail">Sep 2021 – Jun 2025</div>
+            <div class="r-edu-detail">4-year D1 NCAA Athlete · 3× Academic All-Conference · 3× Big West Commissioner's Honor Roll</div>
+            <span class="r-edu-gpa">GPA 3.65</span>
+          </div>
+        </div>
+
+        <div class="r-block">
+          <div class="r-label">Skills</div>
+          <div class="r-skill-group">
+            <div class="r-skill-group-name">Languages</div>
+            <div class="r-skill-tags">
+              <span class="r-skill-tag wine">Python</span>
+              <span class="r-skill-tag wine">SQL</span>
+              <span class="r-skill-tag wine">R</span>
+            </div>
+          </div>
+          <div class="r-skill-group">
+            <div class="r-skill-group-name">Analytics</div>
+            <div class="r-skill-tags">
+              <span class="r-skill-tag mauve">Predictive Modeling</span>
+              <span class="r-skill-tag mauve">A/B Testing</span>
+              <span class="r-skill-tag mauve">Cohort Analysis</span>
+              <span class="r-skill-tag mauve">Customer Segmentation</span>
+              <span class="r-skill-tag mauve">Consumer Insights</span>
+              <span class="r-skill-tag mauve">Trend Forecasting</span>
+              <span class="r-skill-tag mauve">Survival Analysis</span>
+              <span class="r-skill-tag mauve">Time Series</span>
+              <span class="r-skill-tag mauve">Sentiment Analysis</span>
+            </div>
+          </div>
+          <div class="r-skill-group">
+            <div class="r-skill-group-name">Tools</div>
+            <div class="r-skill-tags">
+              <span class="r-skill-tag">Tableau</span>
+              <span class="r-skill-tag">DuckDB</span>
+              <span class="r-skill-tag">Quarto</span>
+              <span class="r-skill-tag">Positron</span>
+              <span class="r-skill-tag">GitHub</span>
+              <span class="r-skill-tag">Excel</span>
+              <span class="r-skill-tag">Keynote</span>
+              <span class="r-skill-tag">Canva</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="r-block">
+          <div class="r-label">Certifications</div>
+          <div class="r-lang">
+            <div class="r-lang-name">AWS Certified Cloud Practitioner</div>
+          </div>
+        </div>
+
+        <div class="r-block">
+          <div class="r-label">Languages</div>
+          <div class="r-lang">
+            <div class="r-lang-name">English</div>
+            <div class="r-lang-level">Native</div>
+          </div>
+          <div class="r-lang">
+            <div class="r-lang-name">French</div>
+            <div class="r-lang-level">Fluent (Minor, UC Davis)</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT: Experience, Projects, Leadership -->
+      <div class="resume-right">
+
+        <div class="r-block">
+          <div class="r-label">Experience</div>
+
+          <div class="r-entry">
+            <div class="r-entry-header">
+              <div class="r-entry-title">Marketing &amp; Product Engagement Analyst</div>
+              <div class="r-entry-date">Mar – Jun 2026</div>
+            </div>
+            <div class="r-entry-org">NVIDIA Industry Project · Cal Poly MSBA</div>
+            <ul class="r-bullets">
+              <li>Analyzed large-scale engagement datasets (~70M rows) using SQL, Python, and DuckDB to identify product adoption trends and support data-driven business decisions.</li>
+              <li>Built UMAP + HDBSCAN clustering pipeline to segment ~9.4M developers across six engagement axes, identifying distinct archetypes including early adopters and high-churn risk groups.</li>
+              <li>Translated findings into consumer-focused insights and strategic recommendations, presenting to both technical and business audiences.</li>
+            </ul>
+          </div>
+
+          <div class="r-entry">
+            <div class="r-entry-header">
+              <div class="r-entry-title">Customer Churn &amp; Retention Analyst</div>
+              <div class="r-entry-date">Jan – Mar 2026</div>
+            </div>
+            <div class="r-entry-org">Oracle Industry Project · Cal Poly MSBA</div>
+            <ul class="r-bullets">
+              <li>Built churn and retention analysis using Python and R, segmenting customers into 9 behavioral cohorts and identifying high-risk groups via survival analysis.</li>
+              <li>Delivered targeted retention strategies projected to reduce churn from 14.5% to 6.6% for key segments.</li>
+            </ul>
+          </div>
+
+          <div class="r-entry">
+            <div class="r-entry-header">
+              <div class="r-entry-title">Instructional Student Assistant, Statistics &amp; Data Science</div>
+              <div class="r-entry-date">Sep 2025 – Jun 2026</div>
+            </div>
+            <div class="r-entry-org">Cal Poly San Luis Obispo</div>
+            <ul class="r-bullets">
+              <li>Taught and supported students in statistics and data analysis across varying technical backgrounds.</li>
+              <li>Developed AI-integrated instructional materials to improve learning outcomes.</li>
+            </ul>
+          </div>
+
+          <div class="r-entry">
+            <div class="r-entry-header">
+              <div class="r-entry-title">Youth Club Soccer Coach</div>
+              <div class="r-entry-date">Mar 2022 – Jun 2025</div>
+            </div>
+            <div class="r-entry-org">Davis Legacy Soccer Club</div>
+            <ul class="r-bullets">
+              <li>Coached and mentored 40+ athletes, designing training environments tailored to different skill levels, motivations, and development goals.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="r-block">
+          <div class="r-label">Projects</div>
+
+          <div class="r-entry">
+            <div class="r-entry-header">
+              <div class="r-entry-title">Garmin Running Analytics</div>
+              <div class="r-entry-date">Dec 2024 – May 2026</div>
+            </div>
+            <div class="r-entry-org">Personal Project · <a href="https://devynsimmonss.github.io/garmin-analytics/" target="_blank">devynsimmonss.github.io/garmin-analytics</a></div>
+            <ul class="r-bullets">
+              <li>Built a personal wearable analytics project analyzing 123 runs and 402 miles of Garmin data using Python and Quarto, with Banister modeling, Mann-Whitney U, and Spearman correlations.</li>
+              <li>Developed a Ridge regression pace prediction model and interactive dashboard, motivated by the gap in women's endurance research.</li>
+            </ul>
+          </div>
+
+          <div class="r-entry">
+            <div class="r-entry-header">
+              <div class="r-entry-title">Social Signal to Sales <span style="font-size:11px; color: var(--mauve); font-weight:400;">· In Progress</span></div>
+              <div class="r-entry-date">2026</div>
+            </div>
+            <div class="r-entry-org">Fashion Analytics · Python · NLP</div>
+            <ul class="r-bullets">
+              <li>Influencer-driven trend forecasting in fashion and athletic apparel, correlating creator engagement spikes with trend cycles using NLP and quasi-experimental A/B methods.</li>
+            </ul>
+          </div>
+
+          <div class="r-entry">
+            <div class="r-entry-header">
+              <div class="r-entry-title">Athletic Apparel Brand Benchmarking <span style="font-size:11px; color: var(--mauve); font-weight:400;">· In Progress</span></div>
+              <div class="r-entry-date">2026</div>
+            </div>
+            <div class="r-entry-org">Financial Analytics · Python</div>
+            <ul class="r-bullets">
+              <li>Comparative financial health analysis across Lululemon, Nike, Under Armour, and Adidas — revenue growth, gross margin, DTC vs. wholesale mix, and inventory dynamics with an interactive dashboard.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="r-block">
+          <div class="r-label">Leadership</div>
+
+          <div class="r-entry">
+            <div class="r-entry-header">
+              <div class="r-entry-title">Head Campus Captain</div>
+              <div class="r-entry-date">Jan 2024 – Present</div>
+            </div>
+            <div class="r-entry-org">The Hidden Opponent · Remote</div>
+            <ul class="r-bullets">
+              <li>Lead and mentor a team of 20 student-athlete leaders, organizing initiatives focused on mental health awareness and athlete well-being across the nation.</li>
+            </ul>
+          </div>
+
+          <div class="r-entry">
+            <div class="r-entry-header">
+              <div class="r-entry-title">Treasurer, Graduate Student Association</div>
+              <div class="r-entry-date">2025 – 2026</div>
+            </div>
+            <div class="r-entry-org">Cal Poly San Luis Obispo</div>
+            <ul class="r-bullets">
+              <li>Managed budgeting and financial oversight for graduate student organization activities and events.</li>
+            </ul>
+          </div>
+
+          <div class="r-entry">
+            <div class="r-entry-header">
+              <div class="r-entry-title">D1 Women's Soccer · UC Davis Aggies</div>
+              <div class="r-entry-date">Sep 2021 – Jun 2025</div>
+            </div>
+            <div class="r-entry-org">NCAA Division I · 71 of 73 games played</div>
+            <ul class="r-bullets">
+              <li>Competed at D1 level for four years while maintaining academic excellence. 3× Academic All-Conference, 3× Big West Commissioner's Honor Roll (Highest Honors).</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
-</div>
 
-<!-- RESUME -->
-<div id="page-resume" class="page">
-  <div class="resume-layout">
-    <div style="margin-bottom:2.75rem;">
-      <p class="section-label">Resume</p>
-      <h2 style="font-family:var(--serif);font-size:3.2rem;font-weight:300;color:var(--forest);">Experience &amp; <em style="font-style:italic;color:var(--accent);">Skills</em></h2>
-    </div>
-
-    <div class="resume-section">
-      <h3 class="resume-heading">Education</h3>
-      <div class="resume-item">
-        <div class="resume-item-header">
-          <span class="resume-role">MS, Business Analytics · GPA 3.89</span>
-          <span class="resume-date">Aug 2025 to Jun 2026</span>
-        </div>
-        <p class="resume-org">California Polytechnic State University, San Luis Obispo</p>
-        <p class="resume-detail">Coursework in financial analytics, marketing analytics, and experimental design. Focus areas in predictive modeling, cohort analysis, customer segmentation, and data storytelling.</p>
+  <!-- CONNECT -->
+  <div class="connect-wrap" id="contact">
+    <section class="connect">
+      <div class="section-label">Get in Touch</div>
+      <h2 class="connect-title">Let's<br><em>Connect</em></h2>
+      <p class="connect-body">Open to full-time roles in marketing analytics, consumer insights, and growth experimentation. Especially drawn to fashion, lifestyle, and athletic wear brands where data serves people with taste — from apparel and accessories to beauty and beyond.</p>
+      <div class="connect-links">
+        <a class="connect-link filled" href="https://www.linkedin.com/in/devyn-k-simmons" target="_blank">LinkedIn</a>
+        <a class="connect-link" href="https://github.com/devynsimmonss" target="_blank">GitHub</a>
+        <a class="connect-link" href="https://devynsimmonss.github.io/garmin-analytics/" target="_blank">Garmin Project</a>
+        <a class="connect-link" href="mailto:devynksimmons@gmail.com">devynksimmons@gmail.com</a>
       </div>
-      <div class="resume-item">
-        <div class="resume-item-header">
-          <span class="resume-role">BS, Statistical Data Science · French Minor · GPA 3.65</span>
-          <span class="resume-date">Sep 2021 to Jun 2025</span>
-        </div>
-        <p class="resume-org">University of California, Davis</p>
-        <p class="resume-detail">Four-year Division I NCAA student athlete, Women's Soccer. 3x Academic All-Conference. 3x Big West Commissioner's Honor Roll (Highest Honors).</p>
-      </div>
-    </div>
-
-    <div class="resume-section">
-      <h3 class="resume-heading">Experience</h3>
-      <div class="resume-item">
-        <div class="resume-item-header">
-          <span class="resume-role">Marketing &amp; Product Engagement Analyst</span>
-          <span class="resume-date">Mar 2026 to Jun 2026</span>
-        </div>
-        <p class="resume-org">NVIDIA Industry Project</p>
-        <p class="resume-detail">Analyzed large-scale engagement datasets (~70M rows) using SQL, Python, and DuckDB to identify product adoption trends and support data-driven business decisions. Translated findings into consumer-focused insights for technical and business audiences.</p>
-      </div>
-      <div class="resume-item">
-        <div class="resume-item-header">
-          <span class="resume-role">Customer Churn &amp; Retention Analyst</span>
-          <span class="resume-date">Jan 2026 to Mar 2026</span>
-        </div>
-        <p class="resume-org">Oracle Industry Project</p>
-        <p class="resume-detail">Built churn and retention analysis using Python and R. Segmented customers into 9 behavioral cohorts, identified high-risk groups, and delivered retention strategies projected to reduce churn from 14.5% to 6.6% for key segments.</p>
-      </div>
-      <div class="resume-item">
-        <div class="resume-item-header">
-          <span class="resume-role">Instructional Student Assistant, Statistics &amp; Data Science</span>
-          <span class="resume-date">Sep 2025 to Jun 2026</span>
-        </div>
-        <p class="resume-org">Cal Poly SLO</p>
-        <p class="resume-detail">Taught and supported students in statistics and data analysis. Developed AI-integrated instructional materials and adapted methods to improve learning outcomes across varying technical backgrounds.</p>
-      </div>
-      <div class="resume-item">
-        <div class="resume-item-header">
-          <span class="resume-role">Head Campus Captain</span>
-          <span class="resume-date">Jan 2024 to Present</span>
-        </div>
-        <p class="resume-org">The Hidden Opponent (Remote)</p>
-        <p class="resume-detail">Lead and mentor a team of 20 student-athlete leaders, organizing initiatives focused on mental health awareness, leadership development, and athlete well-being across the nation.</p>
-      </div>
-      <div class="resume-item">
-        <div class="resume-item-header">
-          <span class="resume-role">Youth Club Soccer Coach</span>
-          <span class="resume-date">Mar 2022 to Jun 2025</span>
-        </div>
-        <p class="resume-org">Davis Legacy Soccer Club</p>
-        <p class="resume-detail">Coached and mentored 40+ athletes. Designed training environments tailored to different skill levels, motivations, and development goals.</p>
-      </div>
-    </div>
-
-    <div class="resume-section">
-      <h3 class="resume-heading">Skills</h3>
-      <div class="skill-grid">
-        <span class="skill-tag">Python</span>
-        <span class="skill-tag">SQL</span>
-        <span class="skill-tag">R</span>
-        <span class="skill-tag">DuckDB</span>
-        <span class="skill-tag">Tableau</span>
-        <span class="skill-tag">Excel</span>
-        <span class="skill-tag">Predictive Modeling</span>
-        <span class="skill-tag">Cohort Analysis</span>
-        <span class="skill-tag">Customer Segmentation</span>
-        <span class="skill-tag">Survival Analysis</span>
-        <span class="skill-tag">Time Series Analysis</span>
-        <span class="skill-tag">A/B Testing</span>
-        <span class="skill-tag">Experimental Design</span>
-        <span class="skill-tag">Marketing Analytics</span>
-        <span class="skill-tag">Data Visualization</span>
-        <span class="skill-tag">Data Storytelling</span>
-        <span class="skill-tag">AWS Certified Cloud Practitioner</span>
-        <span class="skill-tag">Canva</span>
-        <span class="skill-tag">Keynote</span>
-        <span class="skill-tag">French (Fluent)</span>
-      </div>
-    </div>
+    </section>
   </div>
-</div>
 
-<!-- CONTACT -->
-<div id="page-contact" class="page">
-  <div class="contact-layout">
-    <p class="section-label" style="margin-bottom:1rem;">Get in touch</p>
-    <h2 class="contact-heading">Let's <em>connect</em></h2>
-    <p class="contact-sub">Open to internship and full-time opportunities in data analytics. Especially interested in sports, health, athletic wear, and outdoor industry companies (from gear and apparel brands to national parks and conservation organizations) where data can make a real difference for athletes and people who love the outdoors.</p>
-    <div class="contact-links">
-      <a class="contact-link" href="https://www.linkedin.com/in/devyn-k-simmons" target="_blank">LinkedIn</a>
-      <a class="contact-link" href="https://github.com/devynsimmonss" target="_blank">GitHub</a>
-      <a class="contact-link" href="https://devynsimmonss.github.io/garmin-analytics/" target="_blank">Garmin Project</a>
-    </div>
-    <p class="contact-email">devynksimmons@gmail.com</p>
-  </div>
-</div>
+  <footer>
+    <span class="footer-text">© 2026 Devyn Simmons</span>
+    <span class="footer-mark">Built with intention</span>
+  </footer>
 
-<footer>© 2026 Devyn Simmons · Built with intention</footer>
-
-<script>
-function showPage(id) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-  document.getElementById('page-' + id).classList.add('active');
-  document.getElementById('nav-' + id).classList.add('active');
-  window.scrollTo(0, 0);
-}
-</script>
 </body>
 </html>
